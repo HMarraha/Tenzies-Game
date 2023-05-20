@@ -4,14 +4,22 @@ import './App.css'
 import Confetti from 'react-confetti'
 import Die from './Die'
 import Track from "./Track"
+import one from "./assets/1.png"
+import two from "./assets/2.png"
+import three from "./assets/3.png"
+import four from "./assets/4.png"
+import five from "./assets/5.png"
+import six from "./assets/6.png"
 
 export default function App() {
+  const imgs = [one,two,three,four,five,six]
+
   const [isLowScore, setIsLowScore] = useState(false)
   const [lowestScore, setLowestScore] = useState(JSON.parse(localStorage.getItem("lowScore")))
   const [dice, setDice] = useState(allNewDice())
   const [tenzies, setTenzies] = useState(false)
   const [rolls, setRolls] = useState(0)
-  
+
   useEffect(() => {
     const isHeld = dice.every(die => die.isHeld)
     const firstNumber = dice[0].value
@@ -57,7 +65,8 @@ export default function App() {
     setDice(oldDice => oldDice.map(die => {
       return die.id === id ?
              {...die,isHeld: !die.isHeld} :
-             die                           
+             die
+                                        
     }))
   }
 
@@ -75,8 +84,10 @@ export default function App() {
     isHeld={die.isHeld} 
     key={die.id} 
     value={die.value} 
+    img={imgs[die.value - 1]}
     holdDice={()=> holdDice(die.id)} 
     />)
+
   
   return (
     <div>
