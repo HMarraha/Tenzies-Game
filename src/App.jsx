@@ -74,7 +74,7 @@ export default function App() {
       setDice(allNewDice(20))
     }
   }
-  function restartGame(){
+  const restartGame = () => {
     setRolls(0)
     checkNumOfDie()
   }
