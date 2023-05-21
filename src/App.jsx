@@ -50,7 +50,8 @@ export default function App() {
   const showmodal = {
     visibility: modal ? "visible" : "none",
     opacity: modal ? "1" : "0",
-    transition: "1",
+    transition: "350ms ease-out",
+    transfrom: modal ? "translate(0%)" : "translate(-100%)"
   }
 
   useEffect(() => {
@@ -77,6 +78,7 @@ export default function App() {
   const restartGame = () => {
     setRolls(0)
     checkNumOfDie()
+    setTenzies(false)
   }
 
   function resetScore(){
@@ -131,7 +133,6 @@ export default function App() {
       for (let i = 0; i < diceNum; i++) {
           newDice.push(generateNewDice()) 
       }
-      console.log(newDice)
       return newDice
   }
   
@@ -147,10 +148,10 @@ export default function App() {
   
   return (
     <>
-    <div style={styles} className="tenzies-container">      
+    <div style={styles} className="tenzies-container">    
+        {tenzies && <Confetti />}  
         <i onClick={showModal} className="icon"><FaBars size="50px" /></i>
         <main>
-          {tenzies && <Confetti />}
           <h1 className="title">Tenzies</h1>
           <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
           <div className="dice-container">
