@@ -10,10 +10,11 @@ import three from "./assets/3.png"
 import four from "./assets/4.png"
 import five from "./assets/5.png"
 import six from "./assets/6.png"
+import Reset from "./Reset"
 
 export default function App() {
   const imgs = [one,two,three,four,five,six]
-
+  
   const [isLowScore, setIsLowScore] = useState(false)
   const [lowestScore, setLowestScore] = useState(JSON.parse(localStorage.getItem("lowScore")))
   const [dice, setDice] = useState(allNewDice())
@@ -28,6 +29,17 @@ export default function App() {
             setTenzies(true)
         }    
   },[dice])
+
+  function restartGame(){
+    setRolls(0)
+    setDice(allNewDice())
+  }
+
+  function resetScore(){
+    setLowestScore(0)
+    localStorage.setItem("lowScore", 0)
+  }
+
   function generateNewDice(){
     return {
             value: Math.ceil(Math.random() * 6),
@@ -90,7 +102,7 @@ export default function App() {
 
   
   return (
-    <div>
+    <div className="tenzies-container">
       <main>
           {tenzies && <Confetti />}
           <h1 className="title">Tenzies</h1>
@@ -103,6 +115,7 @@ export default function App() {
       <section className="container">
         <Track isLowScore={isLowScore} lowestScore={lowestScore} rolls={rolls} />
       </section> 
+      <Reset resetScore={resetScore} restartGame={restartGame} />
     </div>  
     )
 }
