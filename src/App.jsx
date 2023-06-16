@@ -164,7 +164,7 @@ export default function App() {
         </section> 
         <Reset resetScore={resetScore} restartGame={restartGame} />
     </div>
-    <Modal easy={easy} normal={normal} hard={hard} style={showmodal} showModal={showModal} />
+        <Modal easy={easy} normal={normal} hard={hard} style={showmodal} showModal={showModal} />      
     </>
     )
 }

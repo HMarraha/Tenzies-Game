@@ -5,6 +5,7 @@ export default function Modal({easy,normal,hard,style,showModal}){
         <>
         <div style={style} className="modal">
         <i onClick={showModal} className="close"><MdClose size="40px"/></i>
+        <p className="note"><span className="inline" style={{color: "red"}}>Note</span>: if you change the difficulty your lowest score will reset!</p>
             <button onClick={() => {
                 easy()
                 showModal()
@@ -17,7 +18,6 @@ export default function Modal({easy,normal,hard,style,showModal}){
                 hard()
                 showModal()
             }}>Hard<span>(20)</span></button>
-        <p className="note"><span className="inline" style={{color: "red"}}>Note</span>: if you change the difficulty your lowest score will reset!</p>
         </div>
         </>
     )
